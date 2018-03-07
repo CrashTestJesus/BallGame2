@@ -23,19 +23,22 @@ public class ControlLevel : MonoBehaviour {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);
-        if (hit.collider.gameObject.CompareTag("Pole"))
+        if (hit.collider != null)
         {
-            GameObject temp = hit.collider.gameObject;
-            if (temp.transform.localScale.y < maxLength)
+            if (hit.collider.gameObject.CompareTag("Pole"))
             {
-                Pole pole = temp.GetComponent<Pole>();
-                pole.grow(step);
-                GameObject[] tempArr = pole.getAllNeighbors();
-                for (int i = 0; i < pole.getAllNeighbors().Length; i++)
+                GameObject temp = hit.collider.gameObject;
+                if (temp.transform.localScale.y < maxLength)
                 {
-                    if (tempArr[i].transform.localScale.y < maxLength)
+                    Pole pole = temp.GetComponent<Pole>();
+                    pole.grow(step);
+                    GameObject[] tempArr = pole.getAllNeighbors();
+                    for (int i = 0; i < pole.getAllNeighbors().Length; i++)
                     {
-                        tempArr[i].GetComponent<Pole>().grow(step / falloff);
+                        if (tempArr[i].transform.localScale.y < maxLength)
+                        {
+                            tempArr[i].GetComponent<Pole>().grow(step / falloff);
+                        }
                     }
                 }
             }

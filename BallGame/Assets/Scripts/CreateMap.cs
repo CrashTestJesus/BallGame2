@@ -42,8 +42,13 @@ public class CreateMap : MonoBehaviour {
             ypos += step;
         }
 
+        initDelayCaller();
+    }
+    public void initDelayCaller()
+    {
         StartCoroutine(initDelay());
     }
+
     IEnumerator initDelay()
     {
         while (level[sizeX-1, sizeY-1].GetComponent<Pole>().initialised == false)

@@ -10,7 +10,7 @@ public class Pole : MonoBehaviour {
 
     public int x, y;
 
-    public int height;
+    public float height;
 
     public CreateMap map;
 
@@ -29,6 +29,7 @@ public class Pole : MonoBehaviour {
         if (x > 0 && y > 0 && x < map.sizeX -1 && y < map.sizeY-1)
         {
             //1e rij 
+            
             neighbors[0, 0] = map.level[x - 1, y - 1];
             neighbors[1, 0] = map.level[x - 0, y - 1];
             neighbors[2, 0] = map.level[x + 1, y - 1];
@@ -84,5 +85,27 @@ public class Pole : MonoBehaviour {
             }
         }
         return temp.ToArray();
+    }
+   public SaveClass Save()
+    {
+        height = transform.localScale.y;
+        SaveClass save = new SaveClass( x,y,gameObject.transform, height);
+        Debug.Log(neighbors.Length);
+        return save;
+    }
+}
+[SerializeField]
+public class SaveClass
+{
+    public int x, y;
+    public Transform trans;
+    public float height;
+
+    public SaveClass( int xpos, int ypos, Transform t, float h)
+    {
+        x = xpos;
+        y = ypos;
+        trans = t;
+        height = h;
     }
 }
