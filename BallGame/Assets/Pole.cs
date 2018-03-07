@@ -10,6 +10,8 @@ public class Pole : MonoBehaviour {
 
     public int x, y;
 
+    public int height;
+
     public GameObject[] getDirectNeighbors()
     {
         List<GameObject> temp = new List<GameObject>();
