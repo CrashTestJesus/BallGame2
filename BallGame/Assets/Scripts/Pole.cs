@@ -23,6 +23,7 @@ public class Pole : MonoBehaviour {
 
     public void init()
     {
+        initialised = false;
         map = FindObjectOfType<CreateMap>();
         
 
