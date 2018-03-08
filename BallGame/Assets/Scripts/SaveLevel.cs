@@ -10,6 +10,7 @@ public class SaveLevel : MonoBehaviour {
 
     public GameObject polePref;
     public GameObject emptyPref;
+    public GameObject terrain;
 
     SaveClass[] level;
 
@@ -79,6 +80,7 @@ public class SaveLevel : MonoBehaviour {
         for (int i = 0; i < level.Length; i++)
         {
             GameObject temp = Instantiate(polePref, level[i].trans.position, Quaternion.identity);
+            temp.transform.parent = terrain.transform;
             Pole poleScript = temp.GetComponent<Pole>();
             poleScript.x = level[i].x;
             poleScript.y = level[i].y;
